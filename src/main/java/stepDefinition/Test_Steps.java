@@ -1,11 +1,13 @@
 package stepDefinition;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -29,10 +31,12 @@ public class Test_Steps {
 
 	}
 
-	@When("^User enters \"(.*)\" and \"(.*)\"$")
-	public void user_enters_UserName_and_Password(String username, String pass) {
-		driver.findElement(By.xpath("//input[@type='text']")).sendKeys(username);
-		driver.findElement(By.xpath("//input[@type='password']")).sendKeys(pass);
+	@When("^User enters credentials to Login$")
+	public void user_enters_credentials_to_Login(DataTable usercredentials) {
+
+		List<List<String>> data = usercredentials.raw();
+		driver.findElement(By.xpath("//input[@type='text']")).sendKeys(data.get(0).get(0));
+		driver.findElement(By.xpath("//input[@type='password']")).sendKeys(data.get(0).get(1));
 		driver.findElement(By.xpath("//input[@id='submitButton']")).click();
 	}
 
@@ -50,7 +54,7 @@ public class Test_Steps {
 
 	@Then("^Message displayed LogOut Successfully$")
 	public void message_displayed_LogOut_Successfully() {
-		driver.close();
+		driver.quit();
 		System.out.println("LogOut Successfully");
 	}
 }
