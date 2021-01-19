@@ -5,7 +5,9 @@ Feature: Login Action
     Given User is on Home Page
     When User Navigate to LogIn Page
     And User enters credentials to Login
-           | admin | password |
+           | Username   | Password |
+   				 | admin      | password |
+   
     Then Message displayed Login Successfully
 
   Scenario: Successful LogOut

@@ -1,6 +1,6 @@
 package stepDefinition;
 
-import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -34,10 +34,12 @@ public class Test_Steps {
 	@When("^User enters credentials to Login$")
 	public void user_enters_credentials_to_Login(DataTable usercredentials) {
 
-		List<List<String>> data = usercredentials.raw();
-		driver.findElement(By.xpath("//input[@type='text']")).sendKeys(data.get(0).get(0));
-		driver.findElement(By.xpath("//input[@type='password']")).sendKeys(data.get(0).get(1));
-		driver.findElement(By.xpath("//input[@id='submitButton']")).click();
+		for (Map<String, String> map : usercredentials.asMaps(String.class, String.class)) {
+
+			driver.findElement(By.xpath("//input[@type='text']")).sendKeys(map.get("Username"));
+			driver.findElement(By.xpath("//input[@type='password']")).sendKeys(map.get("Password"));
+			driver.findElement(By.xpath("//input[@id='submitButton']")).click();
+		}
 	}
 
 	@Then("^Message displayed Login Successfully$")
