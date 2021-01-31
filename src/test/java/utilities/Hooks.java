@@ -6,11 +6,11 @@ import cucumber.api.java.Before;
 public class Hooks {
 	@Before
 	public void beforeMethod() {
-		System.out.println("This is the before method");
+		System.out.println("======Before Hooks===========");
 	}
 
 	@After
 	public void afterMethod() {
-		System.out.println("This is the after method");
+		System.out.println("======After Hooks===========");
 	}
 }

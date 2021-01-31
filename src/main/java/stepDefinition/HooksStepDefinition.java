@@ -19,4 +19,19 @@ public class HooksStepDefinition {
 	public void this_is_the_third_step() {
 		System.out.println("This is the third step");
 	}
+
+	@Given("^This is the fourth step$")
+	public void this_is_the_fourth_step() {
+		System.out.println("This is the fourth step");
+	}
+
+	@When("^This is the fifth step$")
+	public void this_is_the_fifth_step() {
+		System.out.println("This is the fifth step");
+	}
+
+	@Then("^this is the sixth step$")
+	public void this_is_the_sixth_step() {
+		System.out.println("This is the sixth step");
+	}
 }
